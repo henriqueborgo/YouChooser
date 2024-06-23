@@ -2,25 +2,32 @@
 <html lang="en">
   <head>
     <title>YouTube project</title>
-    <link rel="charset" href="styles_youtube_project" />
+    <link rel="stylesheet" href="styles_youtube_project.css" />
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, inital-scale =1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale =1.0" />
   </head>
   <body>
     <header>
       <h1>YouChooser</h1>
     </header>
     <main>
-      <iframe
-        id="video"
-        src="https://www.youtube.com/embed/i9164jc-j_M"
-        title="YouTube Video"
-      ></iframe>
-      <form>
+      <div class="video-container">
+        <iframe
+          id="video"
+          src="https://www.youtube.com/embed/i9164jc-j_M"
+          title="YouTube Video"
+          allowfullscreen
+          allow="autoplay"
+        ></iframe>
+      </div>
+      <form></form>
         <h2>Did you like/want to play this video?</h2>
-        <button id="positive-button" class="positive-button">YES</button>
-        <button id="negative-button" class="negative-button">NO</button>
+        <div class=".buttons">
+          <button id="positive-button" class="positive-button">YES</button>
+          <button id="negative-button" class="negative-button">NO</button>
+        </div>
       </form>
     </main>
+    <script src="script.js"></script>
   </body>
 </html>
