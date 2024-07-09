@@ -10,7 +10,7 @@ API_KEY=credentials.api_key
 #variables
 chartInput='mostPopular'
 regionCodeInput = 'US'
-videoCategoryIdInput = '10'
+videoCategoryIdInput = '28'
 maxResultsInput = 50
 metadataObject = ['id','title', 'description', 'channelTitle', 'tags', 'categoryId', 'defaultLanguage', 'publishedAt', 'viewCount', 'likeCount', 'favoriteCount', 'commentCount','duration', 'regionCode']
 
@@ -79,6 +79,16 @@ else:
 
 
 for i in range(0, len(videosList['items'])):
+#check if the video is a Short and allow just complete videos
+    duration = videosList['items'][i]['contentDetails']['duration']
+    print(duration)
+    duration_timedelta = pd.to_timedelta(duration)
+    print(duration_timedelta)
+    duration_seconds = duration_timedelta.total_seconds()
+    print(duration_seconds)
+    if duration_seconds <= 90:
+        continue #skip Shorts
+
 #video object from Youtube API (just the desired ones)
     videoMetadata = {
         #id
