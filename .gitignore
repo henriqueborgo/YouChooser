@@ -2,3 +2,6 @@
 /scraping_data.csv
 /credentials.py
 /__pycache__/
+sklearn-env/
+/train_data.csv
+/videoInformation.json
