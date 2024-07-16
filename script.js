@@ -18,17 +18,35 @@ const videoID = videoInformation.id
 let videoSrc = `https://www.youtube.com/embed/${videoID}`;
 video.src = videoSrc;
 
-//Prevent the page to refress when clicking button
-form.addEventListener("submit", function (event) {
-  event.preventDefault;
-});
 
-//Function when click the POSITIVE button
-btnPositive.addEventListener("click", function () {
+// Function when clicking the POSITIVE button
+btnPositive.addEventListener("click", function (event) {
+  //Prevent screen to refresh
+  event.preventDefault()
+
+  //update the variable with user response
   userResponse = 1;
-  //Play the video
-  videoSrc = `https://www.youtube.com/embed/${videoID}${autoPlay}`;
-  video.src = videoSrc;
-});
+    // Call the API to input the answer in the JSON file
+    let apiURL = `http://localhost:5000/dataJSON/${userResponse}`;
+    const requestOptions = {
+      method: 'PUT'
+    };
+    fetch(apiURL, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response not ok')};
+          return response.json()
+      })
+      .then(data => {
+        console.log(data);
+        // When the API call completes successfully, play the video
+        const videoSrc = `https://www.youtube.com/embed/${videoID}${autoPlay}`;
+        video.src = videoSrc;  
+        })
+      // Handle the error here, display an error message to the user
+      .catch (error => {
+        console.error(`There has been a problem with the fetch operation: `, error)});
+    });
+
 
 //Function when click the NEGATIVE button
